@@ -1,0 +1,39 @@
+package main
+
+templ hello(name string) {
+	<div>Hello, { name }</div>
+}
+
+templ fart() {
+	<div>Fart is the worst</div>
+}
+
+templ yo() {
+	<div>Yo is the best</div>
+}
+
+templ helloMain(index int) {
+	// <style type="text/css">
+	// 	.blue {
+	// 		background-color: blue;
+	// 		color: white;
+	// 	}
+	// 	.red {
+	// 		background-color: red;
+	// 		color: white;
+	// 	}
+	// </style>
+	<div class={  templ.KV(blue(), index%2 == 0), templ.KV(red(), index%2 != 0) }>
+		@hello("world")
+		@fart()
+		@yo()
+	</div>
+}
+
+templ loopTest() {
+	for i := 0; i < 1000; i++ {
+		<div>
+			@helloMain(i)
+		</div>
+	}
+}
